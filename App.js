@@ -1,49 +1,25 @@
-import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+
+import Event from './codes/get-event';
+import Header from './codes/get-header'; 
 
 export default function App() {
+  const [sortPreference, setSortPerference] = useState("Expiry");
+  const sortBy = sort => {
+    setSortPerference(sort);
+  };
+
   return (
     <View style={styles.page}>
-      <View style={styles.header}>
-        <Text>Sort by</Text>
-        <Button title = "Name"/>
-        <Button title = "Expiry" />
-        <Button title = "Add Event" />
-      </View>
-      <View style={styles.event}>
-        <View style={styles.eventhead}>
-          <Text style={styles.eventheadtext}>Flix Bus</Text>
-        </View>
-        <View style={styles.eventbody}>
-          <Text>Coupon WQEUIRAO</Text>
-          <Text>Expiry 30 March 2021</Text>
-          <Text>Remind on 27 Nov 2020</Text>
-        </View>
-      </View>
-      <View style={styles.event}>
-        <View style={styles.eventhead}>
-          <Text style={styles.eventheadtext}>Flix Bus1</Text>
-        </View>
-        <View style={styles.eventbody}>
-          <Text>March 30 2021</Text>
-        </View>
-      </View>
-      <View style={styles.event}>
-        <View style={styles.eventhead}>
-          <Text style={styles.eventheadtext}>Flix Bus1</Text>
-        </View>
-        <View style={styles.eventbody}>
-          <Text>March 30 2021</Text>
-        </View>
-      </View>
-      <View style={styles.event}>
-        <View style={styles.eventhead}>
-          <Text style={styles.eventheadtext}>Flix Bus1</Text>
-        </View>
-        <View style={styles.eventbody}>
-          <Text>March 30 2021</Text>
-        </View>
-      </View>
+      <Header onSort={sortBy}/>
+      <Event title="Amazon" expiry="13-04-2020" />
+      <Event title="Amazon" expiry="13-04-2020" />
+      <Event title="Amazon" expiry="13-04-2020" />
+      <Event title="Amazon" expiry="13-04-2020" />
+      <Event title="Amazon" expiry="13-04-2020" />
+      <Event title="Amazon" expiry="13-04-2020" />
+      <Text>Sorting based on {sortPreference}</Text>
     </View>
   );
 }
@@ -52,43 +28,11 @@ const styles = StyleSheet.create({
   page: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: "space-between",
     paddingTop: '10%',
     paddingLeft: '5%',
     paddingBottom: '5%',
     paddingRight: '5%',
     alignItems: "stretch",
-    justifyContent: "space-between",
-    
-  },
-  header:{
-    flex: 1,
-    flexDirection: 'row',
-    backgroundColor: 'steelblue',
-    justifyContent: "space-between",
-    maxHeight: '10%',
-    padding: 10,
-  },
-  event: {
-    flex: 1,
-    flexDirection: 'column',
-    maxHeight: '20%',
-  },
-  eventhead:{
-    backgroundColor: 'skyblue',
-    padding: 10,
-    borderColor: 'white',
-    borderRadius: 10,
-    alignItems: "center"
-  },
-  eventheadtext:{
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  eventbody:{
-    backgroundColor: 'powderblue',
-    borderColor: 'white',
-    borderRadius: 10,
-    padding: 10,
+    justifyContent: "space-around",
   },
 });
