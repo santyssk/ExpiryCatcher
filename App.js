@@ -3,16 +3,34 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import Event from './codes/get-event';
 import Header from './codes/get-header'; 
+import Newevent from './codes/add-event';
 
 export default function App() {
   const [sortPreference, setSortPerference] = useState("Expiry");
-  const sortBy = sort => {
-    setSortPerference(sort);
+  const [addEvent, setAddEvent] = useState(false);
+  const [nameColor,setNameColor] = useState("blue");
+  const [expiryColor,setExpiryColor] = useState("green");
+
+  const sortByName = () => {
+    setSortPerference("Name");
+    setNameColor("green");
+    setExpiryColor("blue");
   };
+
+  const sortByExpiry = () => {
+    setSortPerference("Expiry");
+    setNameColor("blue");
+    setExpiryColor("green");
+  };
+
+  const eventAddition = value =>{
+    setAddEvent(value);
+  }
 
   return (
     <View style={styles.page}>
-      <Header onSort={sortBy}/>
+      <Header nameSort={sortByName} expirySort ={sortByExpiry} onAdd={eventAddition} nameColor={nameColor} expiryColor={expiryColor}/>
+      <Newevent visible={addEvent} onAdd={eventAddition}/>
       <Event title="Amazon" expiry="13-04-2020" />
       <Event title="Amazon" expiry="13-04-2020" />
       <Event title="Amazon" expiry="13-04-2020" />
